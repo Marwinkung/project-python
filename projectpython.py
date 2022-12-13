@@ -14,11 +14,9 @@ class magnus:
         try:
             start_date=a3.get()+'-'+a2.get()+'-'+a1.get()
             end_date=b3.get()+'-'+b2.get()+'-'+b1.get()
-            print(start_date)
-            print(end_date)
+        
             df=web.DataReader(p1.get(),data_source='yahoo',start=start_date,end=end_date)
 
-            print('magnus')
             ShortEMA=df.Close.ewm(span=5,adjust=False).mean()
             MiddleEMA=df.Close.ewm(span=21,adjust=False).mean()
             LongEMA=df.Close.ewm(span=63,adjust=False).mean()
@@ -88,11 +86,11 @@ class magnus:
                   
 
 
-        df['Buy']=sell_list
-        df['Sell']=buy_list
+        df['Buy']=buy_list
+        df['Sell']=sell_list
         
       
-        print(df.index)
+       
         plt.figure(figsize=(15,6))
         plt.title('Buy and Sell Plot',fontsize=18)
         plt.plot(df['Close'],label='Close Price',color='black',alpha=0.4)
